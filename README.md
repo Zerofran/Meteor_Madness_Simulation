@@ -1,3 +1,5 @@
+<img width="1908" height="944" alt="Captura de pantalla 2025-10-04 121850" src="https://github.com/user-attachments/assets/1a45cc36-c196-4aca-ae6c-fee627317fd6" />
+
 # 🌍 Meteor Madness Simulation
 
 **Meteor Madness Simulation** es una herramienta interactiva desarrollada en **Godot 4.4.1** para simular y visualizar impactos de meteoritos sobre la Tierra utilizando datos reales de la **NASA** y el **USGS**.  
