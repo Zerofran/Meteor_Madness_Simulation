@@ -1,9 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy2aopkvv25f8"]
+[gd_scene load_steps=9 format=3 uid="uid://dy2aopkvv25f8"]
 
-[ext_resource type="PackedScene" uid="uid://lefdfbokm18l" path="res://HUD/obj_base.tscn" id="1_v4b8r"]
+[ext_resource type="Script" uid="uid://dr4gtae083afy" path="res://Script/tool/pie_chart_panel-node.gd" id="1_bwosf"]
+[ext_resource type="Shader" uid="uid://bgs01j5kmnvq5" path="res://Script/Shader canvasItem/Plexus-particles.gdshader" id="1_umh3n"]
+[ext_resource type="PackedScene" uid="uid://lefdfbokm18l" path="res://HUD Scene/obj_base.tscn" id="1_v4b8r"]
+[ext_resource type="Shader" uid="uid://cnvoa8056j23h" path="res://Script/Shader canvasItem/Sky-Starfield.gdshader" id="2_7a0cl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7a0cl"]
+shader = ExtResource("1_umh3n")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ayxea"]
+shader = ExtResource("2_7a0cl")
+shader_parameter/density = 150.0
+shader_parameter/layer_parascale = 2
+shader_parameter/speedx = 0.2
+shader_parameter/speedy = 0.0
+shader_parameter/star_horizontal_wave = 0.3
+shader_parameter/star_size = 3.0
+shader_parameter/twinkle_effect = 0.6
+shader_parameter/twinkle_speed = 0.3
+shader_parameter/fbm_strength = 0.12
+shader_parameter/fbm_mix = 0.07
+shader_parameter/fbm_freq = 4.0
+shader_parameter/fbm_amp = 1.5
+shader_parameter/fbm_speed = 5.0
+shader_parameter/warp_scale = 2.0
+shader_parameter/cloud_freq = 40.0
+shader_parameter/cloud_amp = 0.02
+shader_parameter/cloud_speed = 5.0
+shader_parameter/cloud_color_ci1 = 0.75
+shader_parameter/cloud_color_ci2 = 0.45
+shader_parameter/cloud_color_ci3 = 0.9
+shader_parameter/cloud_color_shiftx = 0.0
+shader_parameter/cloud_color_shifty = 0.0
+shader_parameter/background_color = Color(0.02, 0.04, 0.12, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k374u"]
+shader = ExtResource("1_umh3n")
 
 [sub_resource type="LabelSettings" id="LabelSettings_psvem"]
-font_size = 26
+font_size = 24
 font_color = Color(0, 0, 0, 1)
 
 [node name="HUD_Control" type="Control"]
@@ -70,17 +105,38 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Dawn" type="Control" parent="v_separator/h_separator/screen_space/center_screen/center_box_container"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Panel" type="Panel" parent="v_separator/h_separator/screen_space/center_screen/center_box_container/Dawn"]
+[node name="Panel" type="Panel" parent="v_separator/h_separator/screen_space/center_screen/center_box_container/Top"]
+material = SubResource("ShaderMaterial_7a0cl")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Dawn" type="Control" parent="v_separator/h_separator/screen_space/center_screen/center_box_container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="v_separator/h_separator/screen_space/center_screen/center_box_container/Dawn"]
+material = SubResource("ShaderMaterial_ayxea")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="v_separator/h_separator/screen_space/center_screen/center_box_container/Dawn/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bwosf")
+valores = Array[float]([30.0, 45.0, 25.0, 50.0, 10.0])
+colores = Array[Color]([Color(1, 0, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1), Color(1, 1, 0, 1), Color(0, 0.870588, 0.933333, 1)])
 
 [node name="screen_separator2" type="VSeparator" parent="v_separator/h_separator/screen_space"]
 clip_children = 1
@@ -92,9 +148,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.6
-metadata/_edit_group_ = true
 
 [node name="bg_panel" type="Panel" parent="v_separator/h_separator/screen_space/right_screen"]
+material = SubResource("ShaderMaterial_k374u")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -137,7 +193,7 @@ offset_top = -3.5
 offset_bottom = 3.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Objetos"
+text = "Object"
 label_settings = SubResource("LabelSettings_psvem")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -193,9 +249,117 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="Simulation_config" type="Control" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer"]
+[node name="obj_text2" type="Control" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.14
+
+[node name="obj_bg" type="ColorRect" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/obj_text2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.566705, 0.814832, 1, 1)
+
+[node name="Label" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/obj_text2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.5
+offset_bottom = 3.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "SimulationData"
+label_settings = SubResource("LabelSettings_psvem")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator4" type="VSeparator" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="Simulation_config" type="VBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="time_simulation" type="HBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config"]
+layout_mode = 2
+
+[node name="text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/time_simulation"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Simulation time ="
+
+[node name="code_text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/time_simulation"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "00:00s "
+horizontal_alignment = 2
+
+[node name="Mass" type="HBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config"]
+layout_mode = 2
+
+[node name="text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/Mass"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Mass = "
+
+[node name="code_text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/Mass"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1232 kg"
+horizontal_alignment = 2
+
+[node name="Volume" type="HBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config"]
+layout_mode = 2
+
+[node name="text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Volume = "
+
+[node name="code_text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/Volume"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1232 m³"
+horizontal_alignment = 2
+
+[node name="altittude" type="HBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config"]
+layout_mode = 2
+
+[node name="text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/altittude"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Altitude = "
+
+[node name="code_text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/altittude"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1232 x10³ m"
+horizontal_alignment = 2
+
+[node name="statistic" type="CheckBox" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config"]
+layout_mode = 2
+text = "Statistic"
+icon_alignment = 2
+
+[node name="HSeparator3" type="VSeparator" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
 
 [node name="VSeparator2" type="VSeparator" parent="v_separator/h_separator"]
 clip_children = 1
