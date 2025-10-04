@@ -97,7 +97,7 @@ Este proyecto hace uso de datos y recursos públicos de:
 
 ## 🌠 Enlace del proyecto
 
-🔗 [Meteor Madness Simulation en GitHub Pages](https://franjavendaño.github.io/Meteor_Madness_Simulation/) *(en construcción)*
+🔗 [Meteor Madness Simulation en GitHub Pages](https://zerofran.github.io/Meteor_Madness_Simulation/Index.html) *(en construcción)*
 
 ---
 
