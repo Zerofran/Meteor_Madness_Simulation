@@ -4,18 +4,23 @@ extends Control
 var valores: Array[float] = []
 var colores: Array[Color] = []
 
-func _notification(what):
-	if what == NOTIFICATION_DRAW:
-		_dibujar_grafica()
+func set_datos(v: Array[float], c: Array[Color]) -> void:
+	valores = v
+	colores = c
+	queue_redraw()
 
-func _dibujar_grafica():
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_DRAW:
+		_dibujar()
+
+func _dibujar() -> void:
 	var total: float = 0.0
 	for v in valores:
 		total += v
 	if total == 0.0:
 		return
 
-	var center: Vector2 = size / 2
+	var center: Vector2 = size / 2.0
 	var radius: float = min(size.x, size.y) * 0.45
 	var start_angle: float = 0.0
 

@@ -1,53 +1,62 @@
 @tool
-extends Control
+extends Node
 
-# Datos exportables
-@export var valores: Array[float] = [30.0, 45.0, 25.0, 60.0]:
+@export var valores: Array[float] = [30.0, 45.0, 25.0]:
 	set(value):
 		valores = value
-		queue_redraw()
+		_actualizar_leyendas()
+		_redibujar()
 
 @export var colores: Array[Color] = [
-	Color(1, 0, 0),   # rojo
-	Color(0, 1, 0),   # verde
-	Color(0, 0, 1),   # azul
-	Color(1, 1, 0)    # amarillo
+	Color(0, 1, 0),
+	Color(0, 0, 1),
+	Color(1, 0, 0),
 ]:
 	set(value):
 		colores = value
-		queue_redraw()
+		_actualizar_leyendas()
+		_redibujar()
 
-func _ready():
-	queue_redraw()
+@export var etiquetas: Array[String] = [
+	"Local Effect", "Continental Effect", "Global Effect"
+]:
+	set(value):
+		etiquetas = value
+		_actualizar_leyendas()
+		_redibujar()
 
-func _notification(what):
-	if what == NOTIFICATION_DRAW:
-		_dibujar_grafica()
+@export var grapic_node: NodePath
+@export var legend_container: NodePath
+@export var legend_item_scene: PackedScene
 
-func _dibujar_grafica():
-	var total: float = 0.0
-	for v in valores:
-		total += v
-	if total == 0.0:
+func _ready() -> void:
+	_actualizar_leyendas()
+	_redibujar()
+
+func _redibujar() -> void:
+	if grapic_node == NodePath(""):
+		return
+	var canvas := get_node(grapic_node)
+	if canvas and canvas.has_method("set_datos"):
+		canvas.set_datos(valores, colores)
+		canvas.queue_redraw()
+
+func _actualizar_leyendas() -> void:
+	if not legend_item_scene or legend_container == NodePath(""):
 		return
 
-	var center: Vector2 = size / 2
-	var radius: float = min(size.x, size.y) * 0.45
-	var start_angle: float = 0.0
+	var contenedor := get_node(legend_container)
+	for child in contenedor.get_children():
+		contenedor.remove_child(child)
+		child.queue_free()
 
 	for i in valores.size():
-		var fraccion: float = valores[i] / total
-		var sweep: float = fraccion * TAU
-		var end_angle: float = start_angle + sweep
-		var color: Color = colores[i % colores.size()]
+		var item := legend_item_scene.instantiate()
+		var color_rect := item.get_node("ColorRect") as ColorRect
+		var label := item.get_node("legend_text") as Label
 
-		var puntos: Array[Vector2] = [center]
-		var segmentos: int = 32
-		for j in range(segmentos + 1):
-			var t: float = float(j) / float(segmentos)
-			var angle: float = lerp(start_angle, end_angle, t)
-			var punto: Vector2 = center + Vector2(cos(angle), sin(angle)) * radius
-			puntos.append(punto)
+		color_rect.color = colores[i % colores.size()]
+		var texto := etiquetas[i] if i < etiquetas.size() else "Segmento %d" % [i + 1]
+		label.text = "%s: %.1f" % [texto, valores[i]] + "%"
 
-		draw_polygon(puntos, [color])
-		start_angle = end_angle
+		contenedor.add_child(item)

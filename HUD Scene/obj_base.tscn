@@ -48,3 +48,13 @@ layout_mode = 2
 texture = ExtResource("1_vaeu6")
 expand_mode = 4
 stretch_mode = 5
+
+[node name="VSeparator" type="VSeparator" parent="Container"]
+clip_children = 1
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Container"]
+layout_mode = 2
+focus_mode = 0
+text = "Iniciar"
