@@ -1,0 +1,389 @@
+[gd_scene load_steps=8 format=3 uid="uid://dy2aopkvv25f8"]
+
+[ext_resource type="PackedScene" uid="uid://phd4vvl5d8ww" path="res://HUD Scene/pie_char_graphics.tscn" id="1_seta8"]
+[ext_resource type="PackedScene" uid="uid://lefdfbokm18l" path="res://HUD Scene/obj_base.tscn" id="1_v4b8r"]
+[ext_resource type="Texture2D" uid="uid://b2ncx6km3n0lf" path="res://HUD Image/Meteor.png" id="3_umh3n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_psvem"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_umh3n"]
+bg_color = Color(0.855469, 0.855469, 0.855469, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ayxea"]
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7a0cl"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
+
+[node name="HUD_Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="v_separator" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSeparator" type="HSeparator" parent="v_separator"]
+clip_children = 1
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="h_separator" type="HBoxContainer" parent="v_separator"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="v_separator/h_separator"]
+clip_children = 1
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="screen_space" type="HBoxContainer" parent="v_separator/h_separator"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="left_screen" type="Control" parent="v_separator/h_separator/screen_space"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="screen_separator" type="VSeparator" parent="v_separator/h_separator/screen_space"]
+clip_children = 1
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="center_screen" type="Control" parent="v_separator/h_separator/screen_space"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="center_box_container" type="VBoxContainer" parent="v_separator/h_separator/screen_space/center_screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Top" type="Control" parent="v_separator/h_separator/screen_space/center_screen/center_box_container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="v_separator/h_separator/screen_space/center_screen/center_box_container/Top"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dawn" type="Control" parent="v_separator/h_separator/screen_space/center_screen/center_box_container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="graphics_panel" type="Panel" parent="v_separator/h_separator/screen_space/center_screen/center_box_container/Dawn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="pie_char-grapics" parent="v_separator/h_separator/screen_space/center_screen/center_box_container/Dawn/graphics_panel" instance=ExtResource("1_seta8")]
+layout_mode = 1
+
+[node name="screen_separator2" type="VSeparator" parent="v_separator/h_separator/screen_space"]
+clip_children = 1
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="right_screen" type="Control" parent="v_separator/h_separator/screen_space"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="bg_panel" type="Panel" parent="v_separator/h_separator/screen_space/right_screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="panel_constainer" type="VBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="obj_text" type="Control" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.14
+
+[node name="obj_bg" type="ColorRect" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/obj_text"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.566705, 0.814832, 1, 1)
+
+[node name="Label" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/obj_text"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.5
+offset_bottom = 3.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Object"
+label_settings = SubResource("LabelSettings_psvem")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="h_separator" type="HBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator2" type="VSeparator" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator"]
+clip_children = 1
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="obj_instance_hud" type="VBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="obj_base" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer/obj_instance_hud" instance=ExtResource("1_v4b8r")]
+layout_mode = 2
+
+[node name="obj_base2" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer/obj_instance_hud" instance=ExtResource("1_v4b8r")]
+layout_mode = 2
+
+[node name="obj_base3" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer/obj_instance_hud" instance=ExtResource("1_v4b8r")]
+layout_mode = 2
+
+[node name="obj_base4" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer/obj_instance_hud" instance=ExtResource("1_v4b8r")]
+layout_mode = 2
+
+[node name="obj_base5" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer/obj_instance_hud" instance=ExtResource("1_v4b8r")]
+layout_mode = 2
+
+[node name="obj_base6" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer/obj_instance_hud" instance=ExtResource("1_v4b8r")]
+layout_mode = 2
+
+[node name="obj_base7" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer/obj_instance_hud" instance=ExtResource("1_v4b8r")]
+layout_mode = 2
+
+[node name="obj_base8" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer/obj_instance_hud" instance=ExtResource("1_v4b8r")]
+layout_mode = 2
+
+[node name="HSeparator3" type="VSeparator" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator"]
+clip_children = 1
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="custom_obj" type="Button" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer"]
+custom_minimum_size = Vector2(220, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/hover = SubResource("StyleBoxFlat_umh3n")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ayxea")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7a0cl")
+text = "Custom Obj"
+icon = ExtResource("3_umh3n")
+icon_alignment = 2
+expand_icon = true
+
+[node name="HSeparator" type="HSeparator" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="obj_text2" type="Control" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.14
+
+[node name="obj_bg" type="ColorRect" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/obj_text2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.566705, 0.814832, 1, 1)
+
+[node name="Label" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/obj_text2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.5
+offset_bottom = 3.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "SimulationData"
+label_settings = SubResource("LabelSettings_psvem")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator4" type="VSeparator" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="Simulation_config" type="VBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="time_simulation" type="HBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config"]
+layout_mode = 2
+
+[node name="text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/time_simulation"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Simulation time ="
+
+[node name="code_text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/time_simulation"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "00:00s "
+horizontal_alignment = 2
+
+[node name="Mass" type="HBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config"]
+layout_mode = 2
+
+[node name="text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/Mass"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Mass = "
+
+[node name="code_text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/Mass"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1232 kg"
+horizontal_alignment = 2
+
+[node name="Volume" type="HBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config"]
+layout_mode = 2
+
+[node name="text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Volume = "
+
+[node name="code_text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/Volume"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1232 m³"
+horizontal_alignment = 2
+
+[node name="altittude" type="HBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config"]
+layout_mode = 2
+
+[node name="text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/altittude"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Altitude = "
+
+[node name="code_text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/altittude"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1232 x10³ m"
+horizontal_alignment = 2
+
+[node name="ke" type="HBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config"]
+layout_mode = 2
+
+[node name="text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/ke"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "kinetic energy ="
+
+[node name="code_text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/ke"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1232 x10³ j"
+horizontal_alignment = 2
+
+[node name="positon" type="HBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config"]
+layout_mode = 2
+
+[node name="text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/positon"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "position ="
+
+[node name="code_text" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config/positon"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "55, 46, 8  m"
+horizontal_alignment = 2
+metadata/_edit_group_ = true
+
+[node name="statistic" type="CheckBox" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer/Simulation_config"]
+layout_mode = 2
+text = "Statistic"
+icon_alignment = 2
+
+[node name="HSeparator3" type="VSeparator" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="VSeparator2" type="VSeparator" parent="v_separator/h_separator"]
+clip_children = 1
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="VSeparator2" type="HSeparator" parent="v_separator"]
+clip_children = 1
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2

@@ -1,9 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://lefdfbokm18l"]
 
-[ext_resource type="Texture2D" uid="uid://bmveqn8bcpoel" path="res://icon.svg" id="1_kkepr"]
+[ext_resource type="Texture2D" uid="uid://b2ncx6km3n0lf" path="res://HUD Image/Meteor.png" id="1_vaeu6"]
 
 [sub_resource type="SystemFont" id="SystemFont_w2h5x"]
 font_names = PackedStringArray("Fjalla One")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_kkepr"]
 font = SubResource("SystemFont_w2h5x")
@@ -37,11 +38,23 @@ alignment = 1
 
 [node name="name" type="Label" parent="Container"]
 layout_mode = 2
-text = "Nombre base de datos               "
+text = "Object name "
 label_settings = SubResource("LabelSettings_kkepr")
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Container"]
+[node name="Icon" type="TextureRect" parent="Container"]
+custom_minimum_size = Vector2(25, 10)
 layout_mode = 2
-texture = ExtResource("1_kkepr")
-expand_mode = 2
+texture = ExtResource("1_vaeu6")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="VSeparator" type="VSeparator" parent="Container"]
+clip_children = 1
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Container"]
+layout_mode = 2
+focus_mode = 0
+text = "Iniciar"

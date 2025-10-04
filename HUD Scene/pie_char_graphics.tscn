@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://phd4vvl5d8ww"]
+
+[ext_resource type="Script" uid="uid://dr4gtae083afy" path="res://Script/tool/pie_chart_node.gd" id="1_gdaaf"]
+[ext_resource type="PackedScene" uid="uid://brmy770gcbckc" path="res://HUD Scene/legend.tscn" id="2_gotan"]
+[ext_resource type="Script" uid="uid://cwmrh7awiyejt" path="res://Script/tool/piegrapic_Drawn.gd" id="3_6iobq"]
+
+[node name="pie_char-grapics" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_gdaaf")
+colores = Array[Color]([Color(0, 0.8, 0, 1), Color(0.8, 0.386667, 0, 1), Color(0.92, 0, 0, 1)])
+grapic_node = NodePath("grapic_container/grapic")
+legend_container = NodePath("grapic_container/MarginTop/legend_container")
+legend_item_scene = ExtResource("2_gotan")
+
+[node name="grapic_container" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="grapic" type="Control" parent="grapic_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("3_6iobq")
+
+[node name="MarginTop" type="VBoxContainer" parent="grapic_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator" type="HSeparator" parent="grapic_container/MarginTop"]
+clip_children = 1
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="legend_container" type="VBoxContainer" parent="grapic_container/MarginTop"]
+layout_mode = 2
+size_flags_horizontal = 3

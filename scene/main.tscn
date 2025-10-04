@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ct2k4in1d6jtk"]
 
-[ext_resource type="PackedScene" uid="uid://dy2aopkvv25f8" path="res://HUD/hud_control.tscn" id="1_itxqv"]
+[ext_resource type="PackedScene" uid="uid://dy2aopkvv25f8" path="res://HUD Scene/hud_control.tscn" id="1_itxqv"]
 [ext_resource type="PackedScene" uid="uid://b1btug2qdq1mj" path="res://scene/earth.tscn" id="1_v0l8b"]
 [ext_resource type="PackedScene" uid="uid://42brm7g7tei" path="res://scene/enviroment.tscn" id="3_wp4xf"]
 
@@ -18,7 +18,7 @@ transform = Transform3D(-0.611527, 0, -0.791224, 0, 1, 0, 0.791224, 0, -0.611527
 [node name="HUD_Control" parent="." instance=ExtResource("1_itxqv")]
 
 [node name="camera" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.87, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.95551, 0.294958, 0, -0.294958, 0.95551, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.274)

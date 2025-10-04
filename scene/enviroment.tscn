@@ -10,6 +10,7 @@ sky_material = SubResource("PanoramaSkyMaterial_tmsps")
 
 [sub_resource type="Environment" id="Environment_brvut"]
 background_mode = 2
+background_energy_multiplier = 3.0
 sky = SubResource("Sky_wp4xf")
 tonemap_mode = 2
 glow_enabled = true
