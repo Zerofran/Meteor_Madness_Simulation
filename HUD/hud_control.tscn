@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dy2aopkvv25f8"]
 
-[ext_resource type="PackedScene" uid="uid://lefdfbokm18l" path="res://scene/obj_base.tscn" id="1_v4b8r"]
+[ext_resource type="PackedScene" uid="uid://lefdfbokm18l" path="res://HUD/obj_base.tscn" id="1_v4b8r"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_psvem"]
 font_size = 26
@@ -91,6 +91,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
 metadata/_edit_group_ = true
 
 [node name="bg_panel" type="Panel" parent="v_separator/h_separator/screen_space/right_screen"]

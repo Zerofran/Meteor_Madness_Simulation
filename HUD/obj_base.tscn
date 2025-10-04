@@ -1,9 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://lefdfbokm18l"]
 
-[ext_resource type="Texture2D" uid="uid://bmveqn8bcpoel" path="res://icon.svg" id="1_kkepr"]
+[ext_resource type="Texture2D" uid="uid://bmveqn8bcpoel" path="res://icon.svg" id="1_2sl21"]
 
 [sub_resource type="SystemFont" id="SystemFont_w2h5x"]
 font_names = PackedStringArray("Fjalla One")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_kkepr"]
 font = SubResource("SystemFont_w2h5x")
@@ -43,5 +44,5 @@ vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Container"]
 layout_mode = 2
-texture = ExtResource("1_kkepr")
+texture = ExtResource("1_2sl21")
 expand_mode = 2
