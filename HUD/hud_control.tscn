@@ -1,0 +1,206 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy2aopkvv25f8"]
+
+[ext_resource type="PackedScene" uid="uid://lefdfbokm18l" path="res://scene/obj_base.tscn" id="1_v4b8r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_psvem"]
+font_size = 26
+
+[node name="HUD_Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="v_separator" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSeparator" type="HSeparator" parent="v_separator"]
+clip_children = 1
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="h_separator" type="HBoxContainer" parent="v_separator"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="v_separator/h_separator"]
+clip_children = 1
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="screen_space" type="HBoxContainer" parent="v_separator/h_separator"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="left_screen" type="Control" parent="v_separator/h_separator/screen_space"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="screen_separator" type="VSeparator" parent="v_separator/h_separator/screen_space"]
+clip_children = 1
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="center_screen" type="Control" parent="v_separator/h_separator/screen_space"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="center_box_container" type="VBoxContainer" parent="v_separator/h_separator/screen_space/center_screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Top" type="Control" parent="v_separator/h_separator/screen_space/center_screen/center_box_container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Dawn" type="Control" parent="v_separator/h_separator/screen_space/center_screen/center_box_container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="v_separator/h_separator/screen_space/center_screen/center_box_container/Dawn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="screen_separator2" type="VSeparator" parent="v_separator/h_separator/screen_space"]
+clip_children = 1
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="right_screen" type="Control" parent="v_separator/h_separator/screen_space"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="bg_panel" type="Panel" parent="v_separator/h_separator/screen_space/right_screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="panel_constainer" type="VBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="obj_text" type="Control" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.14
+
+[node name="obj_bg" type="ColorRect" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/obj_text"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/obj_text"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.5
+offset_bottom = 3.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Objetos"
+label_settings = SubResource("LabelSettings_psvem")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="h_separator" type="HBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator2" type="VSeparator" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator"]
+clip_children = 1
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="obj_instance_hud" type="VBoxContainer" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="obj_base" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer/obj_instance_hud" instance=ExtResource("1_v4b8r")]
+layout_mode = 2
+
+[node name="obj_base2" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer/obj_instance_hud" instance=ExtResource("1_v4b8r")]
+layout_mode = 2
+
+[node name="obj_base3" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer/obj_instance_hud" instance=ExtResource("1_v4b8r")]
+layout_mode = 2
+
+[node name="obj_base4" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer/obj_instance_hud" instance=ExtResource("1_v4b8r")]
+layout_mode = 2
+
+[node name="obj_base5" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer/obj_instance_hud" instance=ExtResource("1_v4b8r")]
+layout_mode = 2
+
+[node name="obj_base6" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer/obj_instance_hud" instance=ExtResource("1_v4b8r")]
+layout_mode = 2
+
+[node name="obj_base7" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer/obj_instance_hud" instance=ExtResource("1_v4b8r")]
+layout_mode = 2
+
+[node name="obj_base8" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator/ScrollContainer/obj_instance_hud" instance=ExtResource("1_v4b8r")]
+layout_mode = 2
+
+[node name="HSeparator3" type="VSeparator" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/h_separator"]
+clip_children = 1
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Simulation_config" type="Control" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VSeparator2" type="VSeparator" parent="v_separator/h_separator"]
+clip_children = 1
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="VSeparator2" type="HSeparator" parent="v_separator"]
+clip_children = 1
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2

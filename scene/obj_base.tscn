@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://lefdfbokm18l"]
+
+[ext_resource type="Texture2D" uid="uid://bmveqn8bcpoel" path="res://icon.svg" id="1_kkepr"]
+
+[sub_resource type="SystemFont" id="SystemFont_w2h5x"]
+font_names = PackedStringArray("Fjalla One")
+
+[sub_resource type="LabelSettings" id="LabelSettings_kkepr"]
+font = SubResource("SystemFont_w2h5x")
+font_color = Color(0, 0, 0, 1)
+
+[node name="obj_base" type="Control"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+
+[node name="bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.834614, 0.834614, 0.834614, 1)
+
+[node name="Container" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="name" type="Label" parent="Container"]
+layout_mode = 2
+text = "Nombre base de datos               "
+label_settings = SubResource("LabelSettings_kkepr")
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Container"]
+layout_mode = 2
+texture = ExtResource("1_kkepr")
+expand_mode = 2
