@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="Meteor Madness Simulation"
+run/main_scene="uid://ct2k4in1d6jtk"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [rendering]
 

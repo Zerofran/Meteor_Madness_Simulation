@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://42brm7g7tei"]
+
+[ext_resource type="Texture2D" uid="uid://ctvj5ef1fnwhu" path="res://3D assets/Texture/2k_stars_milky_way.jpg" id="1_pkqvw"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tmsps"]
+panorama = ExtResource("1_pkqvw")
+
+[sub_resource type="Sky" id="Sky_wp4xf"]
+sky_material = SubResource("PanoramaSkyMaterial_tmsps")
+
+[sub_resource type="Environment" id="Environment_brvut"]
+background_mode = 2
+sky = SubResource("Sky_wp4xf")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Enviroment" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_brvut")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Sun2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.841152, 0.301607, -0.448883, -0.206062, -0.588671, -0.781668, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_energy = 0.1
+shadow_enabled = true
