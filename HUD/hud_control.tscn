@@ -4,6 +4,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_psvem"]
 font_size = 26
+font_color = Color(0, 0, 0, 1)
 
 [node name="HUD_Control" type="Control"]
 layout_mode = 3
@@ -123,7 +124,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.566705, 0.814832, 1, 1)
 
 [node name="Label" type="Label" parent="v_separator/h_separator/screen_space/right_screen/bg_panel/panel_constainer/obj_text"]
 custom_minimum_size = Vector2(0, 30)
