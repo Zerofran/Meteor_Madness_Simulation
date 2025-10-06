@@ -1,25 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct2k4in1d6jtk"]
+[gd_scene load_steps=5 format=3 uid="uid://ct2k4in1d6jtk"]
 
 [ext_resource type="PackedScene" uid="uid://dy2aopkvv25f8" path="res://HUD Scene/hud_control.tscn" id="1_itxqv"]
 [ext_resource type="PackedScene" uid="uid://b1btug2qdq1mj" path="res://scene/earth.tscn" id="1_v0l8b"]
 [ext_resource type="PackedScene" uid="uid://42brm7g7tei" path="res://scene/enviroment.tscn" id="3_wp4xf"]
+[ext_resource type="Script" uid="uid://7h1utjsa1nie" path="res://Script/Normal script/camera_control.gd" id="4_brvut"]
 
 [node name="Main" type="Node3D"]
 
 [node name="solar_system" type="Node3D" parent="."]
-transform = Transform3D(-0.611527, 0, -0.791224, 0, 1, 0, 0.791224, 0, -0.611527, 0, 0, 0)
 
 [node name="Enviroment" parent="solar_system" instance=ExtResource("3_wp4xf")]
 
-[node name="Earth" parent="solar_system" instance=ExtResource("1_v0l8b")]
-
 [node name="instacen_obj" type="Node3D" parent="solar_system"]
 
-[node name="HUD_Control" parent="." instance=ExtResource("1_itxqv")]
+[node name="earth" parent="solar_system" node_paths=PackedStringArray("sun_father") instance=ExtResource("1_v0l8b")]
+sun_father = NodePath("../Enviroment")
 
-[node name="camera" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.95551, 0.294958, 0, -0.294958, 0.95551, 0, 0, 0)
+[node name="camera_control" type="Node3D" parent="."]
+transform = Transform3D(-1, 2.58516e-08, -8.35131e-08, 0, 0.955278, 0.295708, 8.74228e-08, 0.295708, -0.955278, 0, 0, 0)
+script = ExtResource("4_brvut")
+menu = false
 
-[node name="Camera3D" type="Camera3D" parent="camera"]
+[node name="Camera3D" type="Camera3D" parent="camera_control"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.274)
 far = 100.0
+
+[node name="HUD_Control" parent="." instance=ExtResource("1_itxqv")]
+mouse_filter = 2
+
+[editable path="solar_system/Enviroment"]

@@ -20,11 +20,15 @@ glow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_brvut")
 
-[node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+[node name="sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Sun2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.841152, 0.301607, -0.448883, -0.206062, -0.588671, -0.781668, -0.5, 0.75, -0.433013, 0, 0, 0)
-light_energy = 0.1
+[node name="sun_position" type="Node3D" parent="sun"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="sun_night_zone" type="DirectionalLight3D" parent="sun"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+light_color = Color(0, 0.368627, 1, 1)
+light_energy = 0.2
 shadow_enabled = true

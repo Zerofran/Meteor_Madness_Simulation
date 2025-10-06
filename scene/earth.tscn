@@ -1,16 +1,72 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1btug2qdq1mj"]
+[gd_scene load_steps=15 format=3 uid="uid://b1btug2qdq1mj"]
 
-[ext_resource type="Texture2D" uid="uid://cg52n7aluop1d" path="res://3D assets/Texture/2k_earth_daymap.png" id="1_0hwuc"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hwuc"]
-albedo_texture = ExtResource("1_0hwuc")
+[ext_resource type="Script" uid="uid://dcbwgivgyib61" path="res://Script/Normal script/earth.gd" id="1_wjqfs"]
+[ext_resource type="Shader" uid="uid://c5d34dialgots" path="res://Script/Shader3D/NightAndDayTest2.tres" id="2_qkkdc"]
+[ext_resource type="Texture2D" uid="uid://cg52n7aluop1d" path="res://3D assets/Texture/2k_earth_daymap.png" id="2_wjqfs"]
+[ext_resource type="Texture2D" uid="uid://ddchxmucwf4jk" path="res://3D assets/Texture/2k_earth_specular_map.jpg" id="4_b4l25"]
+[ext_resource type="Texture2D" uid="uid://ulwhv48dtyms" path="res://3D assets/Texture/2k_earth_nightmap.png" id="5_kdnrp"]
+[ext_resource type="Texture2D" uid="uid://2wcwf8vsnoq6" path="res://3D assets/Texture/2k_earth_normal.jpg" id="6_84rib"]
+[ext_resource type="Shader" uid="uid://dom8j45x3wfme" path="res://Script/Shader3D/atmosphere.tres" id="7_b4l25"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_mbxo4"]
 radius = 1.0
 height = 2.0
 
-[node name="Earth" type="Node3D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_of3r7"]
+render_priority = 0
+shader = ExtResource("2_qkkdc")
+shader_parameter/Dia = ExtResource("2_wjqfs")
+shader_parameter/Noche = ExtResource("5_kdnrp")
+shader_parameter/Offset = 0.0
+shader_parameter/Fade = 0.1
+shader_parameter/Objeto = Vector3(0, 2, 0)
+shader_parameter/Especular = ExtResource("4_b4l25")
+shader_parameter/Intencidad_Emision = 2
+shader_parameter/Normal = ExtResource("6_84rib")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_0hwuc")
+[sub_resource type="Gradient" id="Gradient_kdnrp"]
+offsets = PackedFloat32Array(0.75, 0.882075, 0.929245, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.322741, 0.322741, 0.322741, 1, 0.490566, 0.490566, 0.490566, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_84rib"]
+gradient = SubResource("Gradient_kdnrp")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_agy0a"]
+render_priority = 0
+shader = ExtResource("7_b4l25")
+shader_parameter/Gradiente = SubResource("GradientTexture1D_84rib")
+shader_parameter/Offset = -0.313
+shader_parameter/Fade = 0.667
+shader_parameter/Objeto = Vector3(0, 1, 0)
+shader_parameter/Admosfera_Central = Color(0, 0, 0, 1)
+shader_parameter/Admosfera_Borde = Color(0, 0.462745, 1, 1)
+shader_parameter/energy_emision = 10.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_45655"]
+material = SubResource("ShaderMaterial_agy0a")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0hwuc"]
+radius = 1.00593
+
+[node name="earth" type="Node3D" node_paths=PackedStringArray("eart", "atmosphere") groups=["rotatable"]]
+script = ExtResource("1_wjqfs")
+eart = NodePath("RigidBody3D/ecliptic_rotation/TierraMesh")
+atmosphere = NodePath("RigidBody3D/ecliptic_rotation/atmosphere")
+
+[node name="RigidBody3D" type="StaticBody3D" parent="."]
+
+[node name="ecliptic_rotation" type="Node3D" parent="RigidBody3D"]
+
+[node name="TierraMesh" type="MeshInstance3D" parent="RigidBody3D/ecliptic_rotation"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("SphereMesh_mbxo4")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_of3r7")
+
+[node name="atmosphere" type="MeshInstance3D" parent="RigidBody3D/ecliptic_rotation"]
+transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0, 0, 0)
+mesh = SubResource("SphereMesh_45655")
+surface_material_override/0 = SubResource("ShaderMaterial_agy0a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_0hwuc")
